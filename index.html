@@ -8,6 +8,42 @@
 <body>
   <div id = 'app'>
 
+    <div v-if="screen == homeScreen">
+
+      <input type="search" v-model="inputSearchBuffet" placeholder="Digite o nome do Buffet">
+
+      <div v-if="buffets.length == 0 ">
+        Não há nenhum buffet cadastrado no sistema
+      </div>
+  
+      <ul>
+        <li v-for="buffet in searchBuffets">
+          <address>
+            Buffet: {{buffet.trading_name}} <br>
+            Cidade: {{buffet.city}} <br>
+            Estado {{buffet.state}} <br>
+            <button v-on:click="buffetDetails(buffet.id)">Detalhes</button>
+          </address>
+        </li>
+      </ul>
+
+    </div>
+
+    <div v-if="screen == detailsScreen">
+
+      <button v-on:click="changeView('homeScreen')">Tela Inicial</button> <br>
+
+      <strong>Dados do Buffet:</strong> {{buffet.trading_name}} <br>
+      <strong>Telefone:</strong> {{buffet.phone}} <br>
+      <strong>E-mail:</strong> {{buffet.email}} <br>
+      <strong>Endereço:</strong> {{buffet.public_place}}, {{buffet.address_number}}, {{buffet.neighborhood}}, {{buffet.city}} - {{buffet.state}} <br>
+      <strong>CEP:</strong> {{buffet.zip}} <br>
+      <strong>Formas de Pagamento aceitas:</strong> {{buffet.payment.join(', ')}} <br>
+      <strong>Eventos Oferecidos:</strong>
+      
+    </div>
+
+
   </div>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="main.js"></script>
