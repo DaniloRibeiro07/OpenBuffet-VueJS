@@ -36,7 +36,7 @@
 
     <div id="detailsScreen" v-if="screen == detailsScreen">
 
-      <button v-on:click="changeView('homeScreen')">Tela Inicial</button> <br>
+      <button id="home" v-on:click="changeView('homeScreen')">Tela Inicial</button> <br>
 
       <div id="buffetData">
         <div id="textBuffetData">
@@ -61,69 +61,97 @@
 
       <ul>
         <li v-for="eventType in buffet.event_types">
-          <strong>Nome do evento:</strong> {{eventType.name}}
-          <strong>Descrição:</strong> {{eventType.description}} <br>
-          <strong>Menu:</strong> {{eventType.menu}} <br>
-          <strong>Duração padrão:</strong> {{eventType.duration}} minutos <br>
-          <strong>Quantidade mínima de pessoas:</strong> {{eventType.minimum_quantity}} <br>
-          <strong>Quantidade máxima de pessoas:</strong> {{eventType.maximum_quantity}} <br>
-          Serviço realizado <strong> {{eventType.insiderOutsider}} </strong> <br>
 
-          <div v-if="eventType.decoration || eventType.valet || eventType.alcoholic_beverages">
-            <strong>Serviços extras:</strong>
-            <ul>
-              <li v-if="eventType.decoration"> Decoração</li>
-              <li v-if="eventType.valet"> Estacionamento/Valet</li>
-              <li v-if="eventType.alcoholic_beverages"> Bebidas Alcoólicas</li>
-            </ul>
+          <div class="presentation" v-on:click="displayData">
+            <strong>Nome do evento:</strong> {{eventType.name}} <br>
+            <strong>Descrição:</strong> {{eventType.description}} <br>
+            <strong>Saiba Mais</strong>
           </div>
 
-          <div v-if = "eventType.different_weekend">
-              Preço em dias <strong>úteis</strong>: <br>
-              <strong>Preço base:</strong> {{eventType.working_day_price.base_price}} <br>
-              <strong>Valor da hora extra:</strong> {{eventType.working_day_price.overtime_rate}} <br>
-              <strong>Preço por acrescimo de pessoa:</strong> {{eventType.working_day_price.price_per_person}} <br>
-              Preço nos <strong>finais de semana:</strong> <br>
-              <strong>Preço base:</strong> {{eventType.weekend_price.base_price}} <br>
-              <strong>Valor da hora extra:</strong> {{eventType.weekend_price.overtime_rate}} <br>
-              <strong>Preço por acrescimo de pessoa:</strong> {{eventType.weekend_price.price_per_person}}
-          </div>
+          <div class="eventTypeData hidden">
 
-          <div v-else = "eventType.different_weekend">
-            Preço em dias <strong>úteis</strong> e <strong>finais de semana:</strong> <br>
-            <strong>Preço base:</strong> {{eventType.working_day_price.base_price}} <br>
-            <strong>Valor da hora extra:</strong> {{eventType.working_day_price.overtime_rate}} <br>
-            <strong>Preço por acrescimo de pessoa:</strong> {{eventType.working_day_price.price_per_person}} <br>
-          </div>
+            <div class="eventTypeDetails">
+              <strong>Menu:</strong> {{eventType.menu}} <br>
+              <strong>Duração padrão:</strong> {{eventType.duration}} minutos <br>
+              <strong>Quantidade mínima de pessoas:</strong> {{eventType.minimum_quantity}} <br>
+              <strong>Quantidade máxima de pessoas:</strong> {{eventType.maximum_quantity}} <br>
+              Serviço realizado <strong> {{eventType.insiderOutsider}} </strong> <br>
 
-          <h2>Verificar Disponibilidade</h2>
+              <div v-if="eventType.decoration || eventType.valet || eventType.alcoholic_beverages">
+                <strong>Serviços extras:</strong>
+                <ul>
+                  <li v-if="eventType.decoration"> Decoração</li>
+                  <li v-if="eventType.valet"> Estacionamento/Valet</li>
+                  <li v-if="eventType.alcoholic_beverages"> Bebidas Alcoólicas</li>
+                </ul>
+              </div>
+    
+              <div v-if = "eventType.different_weekend">
+                  Preço em dias <strong>úteis</strong>: <br>
+                  <strong>Preço base:</strong> R$ {{eventType.working_day_price.base_price.toFixed(2)}} <br>
+                  <strong>Valor da hora extra:</strong> R$ {{eventType.working_day_price.overtime_rate.toFixed(2)}}  <br>
+                  <strong>Preço por acrescimo de pessoa:</strong> R$ {{eventType.working_day_price.price_per_person.toFixed(2)}} <br>
+                  Preço nos <strong>finais de semana:</strong> <br>
+                  <strong>Preço base:</strong> R$ {{eventType.weekend_price.base_price.toFixed(2)}} <br>
+                  <strong>Valor da hora extra:</strong> R$ {{eventType.weekend_price.overtime_rate.toFixed(2)}} <br>
+                  <strong>Preço por acrescimo de pessoa:</strong> R$ {{eventType.weekend_price.price_per_person.toFixed(2)}}<br>
+              </div>
+    
+              <div v-else = "eventType.different_weekend">
+                Preço em dias <strong>úteis</strong> e <strong>finais de semana:</strong> <br>
+                <strong>Preço base:</strong> R${{eventType.working_day_price.base_price.toFixed(2)}} <br>
+                <strong>Valor da hora extra:</strong> R$ {{eventType.working_day_price.overtime_rate.toFixed(2)}} <br>
+                <strong>Preço por acrescimo de pessoa:</strong> R$ {{eventType.working_day_price.price_per_person.toFixed(2)}} <br>
+              </div>
+            
+            </div>
 
-          <form id="test" v-on:submit.prevent.self = "consult">
 
-            <label>
-              Número de Participantes:
-              <input id="amountOfPeople" type="number" placeholder="Quantidade de Pessoas" 
-                     :min="eventType.minimum_quantity" :max="eventType.maximum_quantity" required>
-            </label> <br>
+            <div class="checkAndResult">
+
+              <div class="checkAvailability">
+                <h2>Verificar Disponibilidade</h2>
+    
+                <form id="test" v-on:submit.prevent.self = "consult">
+      
+                  <div class="input">
+                    <label>
+                      Número de Participantes:
+                      <input class="amountOfPeople" id="amountOfPeople" type="number" placeholder="Quantidade de Pessoas" 
+                             :min="eventType.minimum_quantity" :max="eventType.maximum_quantity" required>
+                    </label>
+                  </div>
+                   
+        
+                  <div class="input">
+                    <label>
+                      Data do evento:
+                      <input class="date" id="date" type="date" placeholder="Quantidade de Pessoas" :min="getDate()" required>
+                    </label> <br>
+                  </div>
   
-            <label>
-              Data do evento:
-              <input id="date" type="date" placeholder="Quantidade de Pessoas" :min="getDate()" required>
-            </label> <br>
+        
+                  <label>
+                    Consultar Disponibilidade <br>
+                    <input class="submit" type="submit" value="Consultar">
+                  </label>
+      
+                  <input type="hidden" id="id" :value="eventType.id">
+                </form>
+              </div>
+
+              <div class = "result">
+    
+              </div>          
+
+            </div>
+
+           
   
-            <label>
-              Consultar Disponibilidade do Buffet para realizar o evento <br>
-              <input type="submit" value="Consultar">
-            </label>
+            <br> <br>
+          </div>
 
-            <input type="hidden" id="id" :value="eventType.id">
-          </form>
-
-          <div id = "result">
-
-          </div>          
-
-          <br> <br>
+          
         </li>
         
       </ul>

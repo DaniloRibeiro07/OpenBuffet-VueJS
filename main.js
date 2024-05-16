@@ -62,6 +62,14 @@ const app = Vue.createApp({
       return (dateSplit[2] + '/' + dateSplit[1] + '/' + dateSplit[0])
     },
 
+    displayData(element){
+      if( element.srcElement.nodeName  != 'DIV'){
+        element = element.srcElement.parentElement.nextElementSibling.classList.toggle("hidden")
+      }else{
+        element.srcElement.nextElementSibling.classList.toggle("hidden")
+      }
+    },
+
     getDate(){
       let today = new Date();
       let dd = String(today.getDate()).padStart(2, '0')
@@ -112,7 +120,7 @@ const app = Vue.createApp({
       let response = await fetch(`http://localhost:3000/api/v1/event_types/${id}/orders?date=${date}&amount_of_people=${amountOfPeople}`, {method: "POST"})
       console.log(response.status)
       let data = await response.json()
-      divResult = element.srcElement.nextElementSibling
+      divResult = element.srcElement.parentElement.nextElementSibling
       
       if (response.status == 200){
         divResult.innerHTML = `

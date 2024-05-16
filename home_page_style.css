@@ -19,6 +19,7 @@ li {
 }
 
 button{
+  cursor: pointer;
   background-color: #4b4b4b;
   color: #fff;
   padding: 8px;
@@ -59,5 +60,102 @@ button{
 }
 
 .personalData{
+  margin-bottom: 10px;
+}
+
+.hidden{
+  display: none;
+}
+
+.presentation{
+  background-color: #0d47a1;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 25px;
+  margin: 30px;
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.eventTypeData{
+  text-align: center;
+  border-width: 20px;
+  border-style: ridge;
+  border-color: #0d47a1;
+  padding-top: 40px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+
+.checkAndResult{
+  background-color: #0d47a1;
+  margin-left: 10%;
+  margin-right: 10%;
+  border-radius: 10px;
+}
+
+.checkAvailability{
+  background-color: #0d47a1;
+  border-width: 20px;
+  border-style: inset;
+  border-color: #0d47a1;
+  margin-top: 40px;
+  border-radius: 10px;
+
+}
+
+.result{
+  background-color: #0d47a1;
+  border-width: 20px;
+  border-style: outset;
+  border-color: #0d47a1;
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+
+.submit{
+  background-color: #4b4b4b;
+  color: #fff;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+}
+
+.amountOfPeople{
+  background-color: #4b4b4b;
+  color: #fff;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  width: 150px;
+}
+
+.date{
+  background-color: #4b4b4b;
+  color: #fff;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  width: 150px;
+}
+
+
+
+.amountOfPeople::placeholder {
+  color: rgb(207, 202, 202);
+}
+
+.input{
+  margin: 10px;
+}
+
+#home{
+  background-color: #0d47a1;
+  margin-left: 42.5%;
+  width: 15%;
+  font-size: x-large;
   margin-bottom: 10px;
 }
