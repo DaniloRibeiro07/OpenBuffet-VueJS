@@ -40,7 +40,66 @@
       <strong>CEP:</strong> {{buffet.zip}} <br>
       <strong>Formas de Pagamento aceitas:</strong> {{buffet.payment.join(', ')}} <br>
       <strong>Eventos Oferecidos:</strong>
-      
+
+      <ul>
+        <li v-for="eventType in buffet.event_types">
+          <strong>Nome do evento:</strong> {{eventType.name}} <br>
+          <strong>Descrição:</strong> {{eventType.description}} <br>
+          <strong>Menu:</strong> {{eventType.menu}} <br>
+          <strong>Duração padrão:</strong> {{eventType.duration}} minutos <br>
+          <strong>Quantidade mínima de pessoas:</strong> {{eventType.minimum_quantity}} <br>
+          <strong>Quantidade máxima de pessoas:</strong> {{eventType.maximum_quantity}} <br>
+          Serviço realizado <strong> {{eventType.insiderOutsider}} </strong> <br>
+
+          <div v-if="eventType.decoration || eventType.valet || eventType.alcoholic_beverages">
+            <strong>Serviços extras:</strong>
+            <ul>
+              <li v-if="eventType.decoration"> Decoração</li>
+              <li v-if="eventType.valet"> Estacionamento/Valet</li>
+              <li v-if="eventType.alcoholic_beverages"> Bebidas Alcoólicas</li>
+            </ul>
+          </div>
+
+          <div v-if = "eventType.different_weekend">
+              Preço em dias <strong>úteis</strong>: <br>
+              <strong>Preço base:</strong> {{eventType.working_day_price.base_price}} <br>
+              <strong>Valor da hora extra:</strong> {{eventType.working_day_price.overtime_rate}} <br>
+              <strong>Preço por acrescimo de pessoa:</strong> {{eventType.working_day_price.price_per_person}} <br>
+              Preço nos <strong>finais de semana:</strong> <br>
+              <strong>Preço base:</strong> {{eventType.weekend_price.base_price}} <br>
+              <strong>Valor da hora extra:</strong> {{eventType.weekend_price.overtime_rate}} <br>
+              <strong>Preço por acrescimo de pessoa:</strong> {{eventType.weekend_price.price_per_person}}
+          </div>
+
+          <div v-else = "eventType.different_weekend">
+            Preço em dias <strong>úteis</strong> e <strong>finais de semana:</strong> <br>
+            <strong>Preço base:</strong> {{eventType.working_day_price.base_price}} <br>
+            <strong>Valor da hora extra:</strong> {{eventType.working_day_price.overtime_rate}} <br>
+            <strong>Preço por acrescimo de pessoa:</strong> {{eventType.working_day_price.price_per_person}} <br>
+          </div>
+
+          <h2>Verificar Disponibilidade</h2>
+          <label>
+            Número de Participantes:
+            <input type="number" placeholder="Quantidade de Pessoas">
+          </label> <br>
+
+          <label>
+            Data do evento:
+            <input type="date" placeholder="Quantidade de Pessoas">
+          </label> <br>
+          
+          <label>
+            Consultar Disponibilidade do Buffet para realizar o evento <br>
+            <button>Consultar</button>
+          </label>
+
+          <br> <br>
+        </li>
+        
+      </ul>
+
+
     </div>
 
 
