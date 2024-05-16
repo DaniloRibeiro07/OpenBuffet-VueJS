@@ -19,7 +19,7 @@ const app = Vue.createApp({
     searchBuffets(){
       if(this.inputSearchBuffet){
         return this.buffets.filter((buffet) => {
-          return buffet.trading_name.toLowerCase().includes(this.inputSearchBuffet)
+          return buffet.trading_name.toLowerCase().includes(this.inputSearchBuffet.toLowerCase())
         })
       }else{
         return this.buffets

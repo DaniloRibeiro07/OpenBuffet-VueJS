@@ -1,0 +1,63 @@
+body{
+  background-color: #4b4b4b;
+  color: #fff;
+  font-size: x-large;
+}
+
+li {
+  list-style: none;
+}
+
+.card{
+  display: inline-block;
+  background-color: #0d47a1;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+button{
+  background-color: #4b4b4b;
+  color: #fff;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+#searchButton{
+  text-align: center;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+}
+
+#homeScreen{
+  text-align: center;
+}
+
+#detailsScreen{
+  text-align: left;
+}
+
+#buffetData{
+  background-color: #0d47a1;
+  padding-bottom: 40px;
+  padding-top: 5px;
+  border-radius: 25px;
+  margin-inline: 10%;
+}
+
+#textBuffetData{
+  margin-left: 50px;
+}
+
+#title{
+  text-align: center;
+}
+
+.personalData{
+  margin-bottom: 10px;
+}

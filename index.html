@@ -4,24 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OpenBuffet - Vue JS</title>
+  <link rel="stylesheet" href="home_page_style.css">
 </head>
 <body>
   <div id = 'app'>
 
-    <div v-if="screen == homeScreen">
+    <div id="homeScreen" v-if="screen == homeScreen">
 
-      <input type="search" v-model="inputSearchBuffet" placeholder="Digite o nome do Buffet">
+      <label>
+        Filtar pelo <strong>nome</strong>:
+        <input id="searchButton" type="search" v-model="inputSearchBuffet" placeholder="Digite o nome do Buffet">
+      </label>
+
 
       <div v-if="buffets.length == 0 ">
         Não há nenhum buffet cadastrado no sistema
       </div>
   
       <ul>
-        <li v-for="buffet in searchBuffets">
+        <li class="card" v-for="buffet in searchBuffets">
+          <p><strong>Buffet:</strong> {{buffet.trading_name}}</p>
           <address>
-            Buffet: {{buffet.trading_name}} <br>
-            Cidade: {{buffet.city}} <br>
-            Estado {{buffet.state}} <br>
+            <strong>Cidade:</strong> {{buffet.city}} - 
+            <strong>Estado:</strong> {{buffet.state}} <br>
             <button v-on:click="buffetDetails(buffet.id)">Detalhes</button>
           </address>
         </li>
@@ -29,21 +34,34 @@
 
     </div>
 
-    <div v-if="screen == detailsScreen">
+    <div id="detailsScreen" v-if="screen == detailsScreen">
 
       <button v-on:click="changeView('homeScreen')">Tela Inicial</button> <br>
 
-      <strong>Dados do Buffet:</strong> {{buffet.trading_name}} <br>
-      <strong>Telefone:</strong> {{buffet.phone}} <br>
-      <strong>E-mail:</strong> {{buffet.email}} <br>
-      <strong>Endereço:</strong> {{buffet.public_place}}, {{buffet.address_number}}, {{buffet.neighborhood}}, {{buffet.city}} - {{buffet.state}} <br>
-      <strong>CEP:</strong> {{buffet.zip}} <br>
-      <strong>Formas de Pagamento aceitas:</strong> {{buffet.payment.join(', ')}} <br>
-      <strong>Eventos Oferecidos:</strong>
+      <div id="buffetData">
+        <div id="textBuffetData">
+
+          <h1 id="title"> {{buffet.trading_name}} <br></h1>
+
+          <div class="personalData">
+            <strong>Telefone:</strong> {{buffet.phone}}
+            <strong>E-mail:</strong> {{buffet.email}} <br>
+          </div>
+
+          <address class="personalData">
+            <strong>Endereço:</strong> {{buffet.public_place}}, {{buffet.address_number}}, {{buffet.neighborhood}}, {{buffet.city}} - {{buffet.state}}
+            <strong>CEP:</strong> {{buffet.zip}} <br>
+          </address>
+
+          <strong class="personalData" >Formas de Pagamento aceitas:</strong> {{buffet.payment.join(', ')}} <br>
+        </div>
+      </div>
+
+      <h2 id="title"> Eventos Oferecidos: <br></h2>
 
       <ul>
         <li v-for="eventType in buffet.event_types">
-          <strong>Nome do evento:</strong> {{eventType.name}} <br>
+          <strong>Nome do evento:</strong> {{eventType.name}}
           <strong>Descrição:</strong> {{eventType.description}} <br>
           <strong>Menu:</strong> {{eventType.menu}} <br>
           <strong>Duração padrão:</strong> {{eventType.duration}} minutos <br>
