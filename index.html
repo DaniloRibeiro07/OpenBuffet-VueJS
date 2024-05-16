@@ -79,20 +79,31 @@
           </div>
 
           <h2>Verificar Disponibilidade</h2>
-          <label>
-            Número de Participantes:
-            <input type="number" placeholder="Quantidade de Pessoas">
-          </label> <br>
 
-          <label>
-            Data do evento:
-            <input type="date" placeholder="Quantidade de Pessoas">
-          </label> <br>
-          
-          <label>
-            Consultar Disponibilidade do Buffet para realizar o evento <br>
-            <button>Consultar</button>
-          </label>
+          <form id="test" v-on:submit.prevent.self = "consult">
+
+            <label>
+              Número de Participantes:
+              <input id="amountOfPeople" type="number" placeholder="Quantidade de Pessoas" 
+                     :min="eventType.minimum_quantity" :max="eventType.maximum_quantity" required>
+            </label> <br>
+  
+            <label>
+              Data do evento:
+              <input id="date" type="date" placeholder="Quantidade de Pessoas" :min="getDate()" required>
+            </label> <br>
+  
+            <label>
+              Consultar Disponibilidade do Buffet para realizar o evento <br>
+              <input type="submit" value="Consultar">
+            </label>
+
+            <input type="hidden" id="id" :value="eventType.id">
+          </form>
+
+          <div id = "result">
+
+          </div>          
 
           <br> <br>
         </li>
