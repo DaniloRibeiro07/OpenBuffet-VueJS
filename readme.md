@@ -16,4 +16,4 @@ Este projeto tem o intuito de ser uma aplicação externa VueJS que consome a AP
 
 <h2 id="started"> Executando o projeto: </h2>
 
-Para executar o projeto Open-Buffet-VueJS, é necessário possuir na sua maquina um navegador, instalar e deixar em execução o projeto <a href='https://github.com/DaniloRibeiro07/Open-Buffet'>Open-Buffet</a>, e, por fim, abri o arquivo <b>index.html</b>
+Para executar o projeto Open-Buffet-VueJS, é necessário possuir na sua maquina um navegador, instalar e deixar em execução o projeto <a href='https://github.com/DaniloRibeiro07/Open-Buffet'>Open-Buffet</a>, e abri o arquivo <b>index.html</b>
